@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Artista Musical</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Elementos flotantes musicales -->
+    <div class="floating-elements">
+      <div class="floating-note">♪</div>
+      <div class="floating-note">♫</div>
+      <div class="floating-note">♪</div>
+      <div class="floating-note">♬</div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">AURORA</a>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Inicio</a></li>
+          <li>
+            <a
+              href="/album.html"
+              target="_blank"
+              rel="noreferrer"
+              class="nav-link"
+              onclick="goToPage(href)"
+            >
+              Álbumes</a
+            >
+          </li>
+          <li><a href="#videos" class="nav-link">Videos</a></li>
+          <li><a href="#gallery" class="nav-link">Galería</a></li>
+          <li><a href="#contact" class="nav-link">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section con Video -->
+    <section id="home" class="hero">
+      <video class="hero-video" autoplay muted loop>
+        <source src="src/video/background.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">AURORA</h1>
+        <p class="hero-subtitle">Música que toca el alma</p>
+        <button class="buton" onclick="togglePlayer()">
+          ▶ Escuchar Ahora
+        </button>
+      </div>
+    </section>
+
+    <!-- Reproductor de Música -->
+    <div class="music-player" id="musicPlayer">
+      <div class="player-info">
+        <div class="song-title">Midnight Dreams - AURORA</div>
+        <div class="artist">Nuevo Sencillo 2025</div>
+      </div>
+      <div class="audio-controls">
+        <button class="control-btn" onclick="previousTrack()">⏮</button>
+        <button class="control-btn" onclick="togglePlay()" id="playBtn">
+          ▶
+        </button>
+        <button class="control-btn" onclick="nextTrack()">⏭</button>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+      <audio id="audioPlayer">
+        <source
+          src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA"
+          type="audio/mpeg"
+        />
+      </audio>
+      <div class="volume-control">
+        <span>🔊</span>
+        <input
+          type="range"
+          class="volume-slider"
+          min="0"
+          max="100"
+          value="50"
+          onchange="setVolume(this.value)"
+        />
+      </div>
+    </div>
+
+    <!-- Sección de Álbumes -->
+    <section id="albums" class="albums-section">
+      <h2 class="section-title">Álbumes</h2>
+      <div class="albums-grid">
+        <div class="album-card" onclick="playAlbum('dreams')">
+          <img
+            src="/src/img/album-1.png"
+            alt="Dreams Album"
+            class="album-cover"
+          />
+          <div class="album-info">
+            <div class="album-title">Midnight Dreams</div>
+            <div class="album-year">2025</div>
+          </div>
+          <div class="play-overlay">▶</div>
+        </div>
+
+        <div class="album-card" onclick="playAlbum('echoes')">
+          <img
+            src="/src/img/album-2.png"
+            alt="Echoes Album"
+            class="album-cover"
+          />
+          <div class="album-info">
+            <div class="album-title">Digital Echoes</div>
+            <div class="album-year">2024</div>
+          </div>
+          <div class="play-overlay">▶</div>
+        </div>
+
+        <div class="album-card" onclick="playAlbum('stardust')">
+          <img
+            src="src/img/album-3.png"
+            alt="Stardust Album"
+            class="album-cover"
+          />
+          <div class="album-info">
+            <div class="album-title">Cosmic Stardust</div>
+            <div class="album-year">2023</div>
+          </div>
+          <div class="play-overlay">▶</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Videos -->
+    <section id="videos" class="videos-section">
+      <h2 class="section-title">Videos Musicales</h2>
+      <div class="videos-grid">
+        <div class="video-card" onclick="openVideoModal('video1')">
+          <img
+            src="src/img/studio.png"
+            alt="Midnight Dreams Video"
+            class="video-thumbnail"
+          />
+          <button class="video-play-btn">▶</button>
+          <div class="video-info">
+            <div class="video-title">Midnight Dreams</div>
+            <div class="video-description">
+              Video oficial del nuevo sencillo
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card1" onclick="openVideoModal('video2')">
+          <img
+            src="src/img/concert.png"
+            alt="Live Session Video"
+            class="video-thumbnail"
+          />
+          <button class="video-play-btn">▶</button>
+          <div class="video-info">
+            <div class="video-title">Live Session</div>
+            <div class="video-description">Sesión acústica en el estudio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Galería -->
+    <section id="gallery" class="gallery-section">
+      <h2 class="section-title">Galería</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="src/img/foto-1.png" alt="Foto 1" class="gallery-img" />
+          <div class="gallery-overlay">👁️</div>
+        </div>
+        <div class="gallery-item">
+          <img src="src/img/foto-2.png" alt="Foto 2" class="gallery-img" />
+          <div class="gallery-overlay">👁️</div>
+        </div>
+        <div class="gallery-item">
+          <img src="src/img/foto-3.png" alt="Foto 3" class="gallery-img" />
+          <div class="gallery-overlay">👁️</div>
+        </div>
+        <div class="gallery-item">
+          <img src="src/img/foto-4.png" alt="Foto 4" class="gallery-img" />
+          <div class="gallery-overlay">👁️</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <h2 class="section-title">Contacto</h2>
+        <p style="color: white; font-size: 1.2rem; margin-bottom: 20px">
+          ¿Quieres colaborar? ¡Hablemos!
+        </p>
+
+        <form class="contact-form" onsubmit="sendMessage(event)">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Tu nombre"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-input"
+              placeholder="Tu email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Asunto"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-input form-textarea"
+              placeholder="Tu mensaje"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="social-links">
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">📷</a>
+        <a href="#" class="social-link">🐦</a>
+        <a href="#" class="social-link">🎵</a>
+        <a href="#" class="social-link">▶️</a>
+      </div>
+      <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Modal de Video -->
+    <div class="video-modal" id="videoModal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeVideoModal()">×</button>
+        <video class="modal-video" id="modalVideo" controls>
+          <source
+            src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAABnFtZGF0AAAK8WJhdmNDAjrAAAABcIhH8bP5"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+    </div>
+
+    <script>
+      // Variables globales
+      let isPlaying = false;
+      let currentTrack = 0;
+      let progressTimer;
+
+      const tracks = [
+        { title: "Midnight Dreams", artist: "AURORA", duration: 240 },
+        { title: "Digital Echoes", artist: "AURORA", duration: 195 },
+        { title: "Cosmic Stardust", artist: "AURORA", duration: 210 },
+      ];
+
+      // Navegación scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Funciones del reproductor
+      function togglePlayer() {
+        const player = document.getElementById("musicPlayer");
+        player.classList.toggle("active");
+        console.log("🎵 Reproductor activado");
+      }
+
+      function togglePlay() {
+        const playBtn = document.getElementById("playBtn");
+        const audioPlayer = document.getElementById("audioPlayer");
+
+        if (!isPlaying) {
+          playBtn.innerHTML = "⏸";
+          isPlaying = true;
+          startProgress();
+          console.log("▶️ Reproduciendo música");
+        } else {
+          playBtn.innerHTML = "▶";
+          isPlaying = false;
+          stopProgress();
+          console.log("⏸️ Música pausada");
+        }
+      }
+
+      function previousTrack() {
+        currentTrack = currentTrack > 0 ? currentTrack - 1 : tracks.length - 1;
+        updateTrackInfo();
+        console.log(`⏮️ Pista anterior: ${tracks[currentTrack].title}`);
+      }
+
+      function nextTrack() {
+        currentTrack = (currentTrack + 1) % tracks.length;
+        updateTrackInfo();
+        console.log(`⏭️ Siguiente pista: ${tracks[currentTrack].title}`);
+      }
+
+      function updateTrackInfo() {
+        const songTitle = document.querySelector(".song-title");
+        songTitle.textContent = `${tracks[currentTrack].title} - ${tracks[currentTrack].artist}`;
+      }
+
+      function setVolume(value) {
+        const audioPlayer = document.getElementById("audioPlayer");
+        audioPlayer.volume = value / 100;
+        console.log(`🔊 Volumen: ${value}%`);
+      }
+
+      function startProgress() {
+        let progress = 0;
+        const progressBar = document.getElementById("progress");
+
+        progressTimer = setInterval(() => {
+          progress += 0.5;
+          if (progress >= 100) {
+            progress = 0;
+            nextTrack();
+          }
+          progressBar.style.width = progress + "%";
+        }, tracks[currentTrack].duration * 10);
+      }
+
+      function stopProgress() {
+        if (progressTimer) {
+          clearInterval(progressTimer);
+        }
+      }
+
+      // Funciones de álbumes
+      function playAlbum(albumName) {
+        console.log(`🎵 Reproduciendo álbum: ${albumName}`);
+        togglePlayer();
+
+        // Simular cambio de álbum
+        setTimeout(() => {
+          if (!isPlaying) {
+            togglePlay();
+          }
+        }, 500);
+      }
+
+      // Modal de video
+      function openVideoModal(videoId) {
+        const modal = document.getElementById("videoModal");
+        modal.classList.add("active");
+        document.body.classList.add("modal-open");
+        console.log(`🎬 Abriendo video: ${videoId}`);
+      }
+
+      function closeVideoModal() {
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("modalVideo");
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-open");
+        video.pause();
+        console.log("❌ Video cerrado");
+      }
+
+      // Formulario de contacto
+      function sendMessage(event) {
+        event.preventDefault();
+
+        // Simular envío
+        const submitBtn = event.target.querySelector(".submit-btn");
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = "Enviando...";
+        submitBtn.style.background = "linear-gradient(45deg, #2ecc71, #27ae60)";
+
+        setTimeout(() => {
+          submitBtn.textContent = "✓ Enviado";
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background =
+              "linear-gradient(45deg, #ff6b6b, #4ecdc4)";
+            event.target.reset();
+          }, 2000);
+        }, 1500);
+
+        console.log("📧 Mensaje enviado");
+      }
+
+      // Navegación suave
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+      function goToPage(page) {
+        window.location.href;
+      }
+
+      // Cerrar modal con ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeVideoModal();
+        }
+      });
+
+      // Mensaje de bienvenida
+      console.log(`
+🎵 ====== AURORA - PÁGINA MUSICAL ======
+🔍 ANÁLISIS DE CÓDIGO PARA ESTUDIANTES:
+
+📍 SECCIONES IDENTIFICADAS:
+   A: Navegación con backdrop-filter
+   B: Hero con video background
+   C: Reproductor flotante con controles
+   D: Galería de álbumes con efectos 3D
+   E: Videos con modal interactivo
+   F: Galería de fotos con animaciones flotantes
+   G: Formulario de contacto
+   H: Elementos musicales flotantes
+   I: Footer con redes sociales
+   J: Keyframes (15+ animaciones)
+   K: Responsive design
+   L: Estados especiales
+
+🎯 ANIMACIONES INTEGRADAS:
+   • Transform: rotate, scale, translate, skew
+   • Transitions: cubic-bezier personalizados
+   • Keyframes: fadeIn, slideIn, pulse, float
+   • 3D: perspective, rotateY, preserve-3d
+   • Filters: brightness, contrast, saturate
+   • Audio: controles interactivos
+   • Video: modal con overlay
+
+💡 CASOS DE USO REALES:
+   ✓ Hero con video background
+   ✓ Reproductor de música flotante
+   ✓ Galería interactiva de álbumes
+   ✓ Modal de video responsivo
+   ✓ Formulario con feedback visual
+   ✓ Navegación con scroll detection
+
+🚀 ¿LISTOS PARA EL ANÁLISIS?
+        `);
+    </script>
+  </body>
+</html>
